@@ -1,0 +1,11 @@
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ include "openresty-art.fullname" . }}-env
+  labels:
+    {{- include "openresty-art.labels" . | nindent 4 }}
+data:
+  {{- range $key, $val := .Values.dbtEnv }}
+  "{{ $key }}": "{{ $val }}"
+  {{- end }}
